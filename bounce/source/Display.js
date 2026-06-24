@@ -6,7 +6,7 @@ export default class Display {
     /**
      * Bounce Display constructor
      */
-    constructor() {
+    constructor(visuals) {
         this.current   = "mainScreen";
         this.container = document.querySelector("#container");
         this.header    = document.querySelector(".messages h2");
@@ -18,6 +18,8 @@ export default class Display {
             gameOver   : [ "GameOver",   "Write your name"    ],
             highScores : [ "HighScores", "Select a game"      ],
             help       : [ "Help",       "Game controls"      ],
+            StartOver : ["StartOver", "Start Over?"],
+        
         };
     }
 
@@ -48,14 +50,15 @@ export default class Display {
      * @returns {Void}
      */
     hide() {
-        this.container.className = "playing";
+      this.container.className = "playing";
+      this.container.className = "StartOver";
     }
-
     /**
      * Returns true if the current is in playing mode
      * @returns {Boolean}
      */
     get isPlaying() {
         return this.current === "playing";
+        console.log("player is playing!");
     }
 }
