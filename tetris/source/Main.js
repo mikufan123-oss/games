@@ -21,6 +21,7 @@ let score      = null;
 let tetriminos = null;
 let animation  = null;
 let startTime  = null;
+let finishGame = null;
 
 // Constants
 const tetriminoSize   = 2;
@@ -36,10 +37,19 @@ function showMainScreen() {
     display.set("mainScreen").show();
 }
 
+
 /**
  * Pause the Game
  * @returns {Void}
  */
+pause = new Object(); 
+
+let pause = {
+    startPause(); 
+    endPause();
+}
+
+
 function startPause() {
     display.set("paused").show();
     sounds.play("pause");
@@ -61,7 +71,7 @@ function endPause() {
  * @returns {Void}
  */
 function showPause() {
-    if (display.isPaused) {
+    if (display.Pause) {
         endPause();
     } else {
         startPause();
@@ -72,7 +82,7 @@ function showPause() {
  * Finish the Game
  * @returns {Void}
  */
-function finishGame() {
+ let finishGame = function finishGame() {
     destroyGame();
     showMainScreen();
 }
@@ -86,17 +96,19 @@ function showGameOver() {
     sounds.play("end");
     scores.setInput();
     destroyGame();
-}
+if (showGameOver = showGameOver) {
+    let destoryGame = function destroyGame() {
+        board.clearElements(); 
+        tetrminos.clearElements();
+        show("Game Over! You lost!")
+    }
+    
+} 
 
 /**
  * Destroys the game elements
  * @returns {Void}
  */
-function destroyGame() {
-    board.clearElements();
-    tetriminos.clearElements();
-}
-
 /**
  * Show the High Scores
  * @returns {Void}
@@ -141,9 +153,9 @@ function newGame() {
     display.set("playing").hide();
     keyboard.reset();
 
-    board      = new Board(tetriminoSize, onWindEnd);
-    score      = new Score(level.get(), maxInitialLevel);
-    tetriminos = new Tetriminos(board, sounds, score, tetriminoSize, showGameOver);
+    board      = this.show.new ( Board(tetriminoSize, onWindEnd) );
+    score      = this.show.new ( Score(level.get(), maxInitialLevel) );
+    tetriminos = this.show.new  (Tetriminos(board, sounds, score, tetriminoSize, showGameOver) );
 
     requestAnimation();
 }
