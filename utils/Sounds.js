@@ -36,10 +36,13 @@ export default class Sounds {
     play(sound) {
         if (!this.mute) {
             const audio = new Audio(`audio/${sound}.mp3`);
-            audio.play();
+             return audio.play(sound);
         }
     }
 
+
+
+    
     /**
      * Mute/Unmute the sound
      * @param {Boolean=} mute
@@ -49,31 +52,35 @@ export default class Sounds {
         this.mute = mute !== undefined ? mute : !this.mute;
         this.setDisplay();
         this.data.set(this.mute ? 1 : 0);
-    }
+    }    
 
+    ifMuteispressed() {
+        startMute() {
+        this.old = this.mute;
+        this.toggle(true);
+    }    endMute() {
+        this.toggle(this.old);
+    }
+        
+    }
     /**
      * Used to mute the sound for a short period
      * @returns {Void}
      */
-    startMute() {
-        this.old = this.mute;
-        this.toggle(true);
-    }
+  
 
     /**
      * Resets the Mute to the original value
      * @returns {Void}
      */
-    endMute() {
-        this.toggle(this.old);
-    }
+    
 
     /**
      * Returns true if the sound is off and false if is on
      * @returns {Boolean}
      */
     isMute() {
-        return this.mute;
+        return this.mute; 
     }
 
     /**
